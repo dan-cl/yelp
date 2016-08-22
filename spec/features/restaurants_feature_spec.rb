@@ -28,7 +28,9 @@ feature 'restaurants' do
       fill_in 'Name', with: 'KFC'
       click_button 'Create Restaurant'
       expect(page).to have_content 'KFC'
-      expect(current_path).to ep '/restaurants'
+      expect(current_path).to eq '/restaurants'
     end
   end
+
+
 end
