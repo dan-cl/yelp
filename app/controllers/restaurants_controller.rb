@@ -23,7 +23,7 @@ class RestaurantsController < ApplicationController
   def update
     @restaurant = Restaurant.find(params[:id])
     @restaurant.update(restaurant_params)
-    
+    \q
     redirect_to '/restaurants'
   end
 
