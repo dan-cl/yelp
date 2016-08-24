@@ -12,6 +12,13 @@ feature 'User can sign in and out' do
       visit('/')
       expect(page).not_to have_link('Sign out')
     end
+
+    it 'should show sign in page when clicking add restaurant' do
+      visit('/')
+      click_link('Add a restaurant')
+      expect(page).to have_content('Log in')
+      expect(page).not_to have_content('Description')
+    end
   end
 
   context "user signed in on the homepage" do
@@ -35,4 +42,5 @@ feature 'User can sign in and out' do
       expect(page).not_to have_link('Sign up')
     end
   end
+
 end
