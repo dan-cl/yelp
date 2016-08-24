@@ -31,6 +31,8 @@ gem 'jbuilder', '~> 2.5'
 # gem 'capistrano-rails', group: :development
 gem 'haml'
 gem 'devise'
+gem 'omniauth-facebook'
+
 
 
 group :development, :test do
