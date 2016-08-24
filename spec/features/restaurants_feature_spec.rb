@@ -1,4 +1,5 @@
 require 'rails_helper'
+# require_relative './feature_helper.rb'
 
 feature 'restaurants' do
 
@@ -20,11 +21,9 @@ feature 'restaurants' do
   end
 
   context 'restaurants have been added' do
-    before do
-      Restaurant.create(name: 'KFC')
-    end
 
     scenario 'display restaurants' do
+      create_restaurant
       visit '/restaurants'
       expect(page).to have_content('KFC')
       expect(page).not_to have_content('No restaurants yet')
@@ -58,21 +57,19 @@ feature 'restaurants' do
 
   context 'viewing restaurants' do
 
-      let!(:kfc){Restaurant.create(name: 'KFC')}
-
       scenario 'let a user view a restaurant' do
+        create_restaurant
         visit '/restaurants'
         click_link 'KFC'
         expect(page).to have_content 'KFC'
-        expect(current_path).to eq "/restaurants/#{kfc.id}"
+        expect(current_path).to eq "/restaurants/#{Restaurant.last.id}"
       end
   end
 
   context 'editing restaurants' do
 
-    before {Restaurant.create name: 'KFC', description: 'Deep fried goodness'}
-
     scenario 'let a user edit a restaurant' do
+      create_restaurant
       visit '/restaurants'
       click_link 'Edit KFC'
       fill_in 'Name', with: 'Kentucky Fried Chicken'
@@ -87,9 +84,8 @@ feature 'restaurants' do
 
   context 'deleting restaurants' do
 
-    before {Restaurant.create name: 'KFC', description: 'Deep fried goodness'}
-
     scenario 'removes a restaurant when a user clicks a delete link' do
+      create_restaurant
       visit '/restaurants'
       click_link 'Delete KFC'
       expect(page).not_to have_content 'KFC'

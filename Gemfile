@@ -32,6 +32,8 @@ gem 'jbuilder', '~> 2.5'
 gem 'haml'
 gem 'devise'
 gem 'omniauth-facebook'
+gem 'pry-rails'
+gem 'shoulda-matchers'
 
 
 
